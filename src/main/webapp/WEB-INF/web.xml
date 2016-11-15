@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/j2ee/web-app_3_0.xsd">
-	<display-name>webstore</display-name>
+	<display-name>ticketportal</display-name>
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>
@@ -24,7 +24,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>com.packt</param-value>
+			<param-value>com.packt.ticketportal</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

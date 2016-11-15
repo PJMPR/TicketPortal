@@ -84,7 +84,7 @@
 	</repositories>
 
 	<build>
-		<finalName>webstore</finalName>
+		<finalName>ticketportal</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
