@@ -113,9 +113,9 @@ public class Ticket {
 
     @Override
     public int hashCode(){
-        final int prime = 31;
+        final int PRIME = 31;
         int result = 1;
-        result = prime * result + ((ticketId == null) ? 0 : ticketId.hashCode());
+        result = PRIME * result + ((ticketId == null) ? 0 : ticketId.hashCode());
         return result;
     }
 
