@@ -1,18 +1,27 @@
 package com.packt.ticketportal.domain;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by Kuba on 2016-11-15.
  */
+@Entity
 public class Customer {
-    private String customerId;
+    private Long customerId;
     private String name;
     private String address;
     private long noOfOrdersMade;
+    private Date registrationDate = new Date();
+    private List<Ticket> tickets = new ArrayList<Ticket>();
+
 
     public Customer(){
         super();
     }
-    public Customer(String customerId, String name, String address){
+    public Customer(Long customerId, String name, String address){
         this.customerId = customerId;
         this.name = name;
         this.address = address;
@@ -21,12 +30,13 @@ public class Customer {
     //
     // GETTERY I SETTERY
     //
-
-    public String getCustomerId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
@@ -37,6 +47,7 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getAddress() {
         return address;
@@ -54,6 +65,23 @@ public class Customer {
         this.noOfOrdersMade = noOfOrdersMade;
     }
 
+    @Temporal(TemporalType.DATE)
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
     //
     // KONIEC GETTEROW I SETTEROW
     //

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 
 @Controller
-public class ProductController {
+public class TicketController {
     @Autowired
     private TicketRepository ticketRepository;
 

@@ -1,40 +1,47 @@
 package com.packt.ticketportal.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
  * Created by Kuba on 2016-11-15.
  */
+@Entity
+@NamedQueries({
+        @NamedQuery(name= "ticketAvaible", query = "Select t from Ticket t where t.ticketsInStock > 0")
+})
 
 public class Ticket {
-    private String ticketId;
+    private Long ticketId;
     private String ticketName;
     private BigDecimal price;
     private String ticketDesc;
     private String ticketCat;
     private long ticketsInStock;
     private long ticketsInOrder;
-
+    private String location;
     public Ticket(){
         super();
     }
 
-    public Ticket(String ticketId, String ticketName, BigDecimal price){
+    public Ticket(Long ticketId, String ticketName,String location, BigDecimal price){
         this.ticketId = ticketId;
         this.ticketName = ticketName;
+        this.location = location;
         this.price = price;
     }
 
     //
     // GETTERY I SETTERY
     //
-
-    public String getTicketId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(String ticketId) {
+    public void setTicketId(Long ticketId) {
         this.ticketId = ticketId;
     }
 
@@ -52,6 +59,14 @@ public class Ticket {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getTicketDesc() {

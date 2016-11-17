@@ -17,6 +17,19 @@
 	</properties>
 
 	<dependencies>
+		<!--It's a must-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+
 		<!-- Spring core & mvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -73,6 +86,36 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!--HIBERNATE-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.4.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-commons-annotations -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.3.0.ga</version>
+		</dependency>
+
+		<!--HSQL DATABASE-->
+		<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<repositories>
