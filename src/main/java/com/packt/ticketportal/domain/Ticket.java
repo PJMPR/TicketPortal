@@ -6,6 +6,7 @@ import java.util.Objects;
 /**
  * Created by Kuba on 2016-11-15.
  */
+
 public class Ticket {
     private String ticketId;
     private String ticketName;
