@@ -61,7 +61,7 @@ public class TicketRepository extends RepositoryBase<Ticket> {
         update.setString(4,entity.getTicketCat());
         update.setLong(5,entity.getTicketsInStock());
         update.setString(6,entity.getLocation());
-        update.setLong(3, entity.getId());
+        update.setInt(3, entity.getId());
 
     }
 }

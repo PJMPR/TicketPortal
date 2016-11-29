@@ -12,7 +12,7 @@ public class HistoryLog implements IHaveId {
     private int id;
     private Customer customer;
     private Date date;
-    private double amount;
+    private int amount;
     private Ticket forEvent;
 
     public int getId() {
@@ -39,11 +39,11 @@ public class HistoryLog implements IHaveId {
         this.date = date;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
