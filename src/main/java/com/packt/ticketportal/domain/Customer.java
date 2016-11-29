@@ -1,19 +1,28 @@
 package com.packt.ticketportal.domain;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.sql.Array;
+
 /**
  * Created by Kuba on 2016-11-15.
  */
-public class Customer {
-    private String customerId;
+
+public class Customer implements IHaveId {
+    private int id;
     private String name;
     private String address;
-    private long noOfOrdersMade;
+    private int noOfOrdersMade;
+    private Date registrationDate;
+    private Array tickets;
+
 
     public Customer(){
         super();
     }
-    public Customer(String customerId, String name, String address){
-        this.customerId = customerId;
+    public Customer(int id, String name, String address){
+        this.id = id;
         this.name = name;
         this.address = address;
     }
@@ -21,13 +30,12 @@ public class Customer {
     //
     // GETTERY I SETTERY
     //
-
-    public String getCustomerId() {
-        return customerId;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,6 +46,7 @@ public class Customer {
         this.name = name;
     }
 
+
     public String getAddress() {
         return address;
     }
@@ -46,18 +55,32 @@ public class Customer {
         this.address = address;
     }
 
-    public long getNoOfOrdersMade() {
+    public int getNoOfOrdersMade() {
         return noOfOrdersMade;
     }
 
-    public void setNoOfOrdersMade(long noOfOrdersMade) {
+    public void setNoOfOrdersMade(int noOfOrdersMade) {
         this.noOfOrdersMade = noOfOrdersMade;
     }
 
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public Array getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Array tickets) {
+        this.tickets = tickets;
+    }
     //
     // KONIEC GETTEROW I SETTEROW
     //
-    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;
@@ -66,12 +89,12 @@ public class Customer {
         if (getClass() != obj.getClass())
             return false;
         Customer other = (Customer) obj;
-        if (customerId == null)
+        if (id == 0)
         {
-            if (other.customerId != null)
+            if (other.id != 0)
                 return false;
         }
-        else if (!customerId.equals(other.customerId))
+        else if (id!=(other.id))
             return false;
         return true;
     }
@@ -80,7 +103,7 @@ public class Customer {
     public int hashCode(){
         final int PRIME = 15;
         int result = 1;
-        result = PRIME * result + ((customerId == null) ? 0 : customerId.hashCode());
+        result = PRIME * result + ((id == 0) ? 0 : hashCode());
         return result;
     }
 }

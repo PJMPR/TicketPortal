@@ -1,40 +1,40 @@
 package com.packt.ticketportal.domain;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * Created by Kuba on 2016-11-15.
  */
-public class Ticket {
-    private String ticketId;
+
+public class Ticket implements IHaveId {
+    private int id;
     private String ticketName;
     private BigDecimal price;
     private String ticketDesc;
     private String ticketCat;
     private long ticketsInStock;
     private long ticketsInOrder;
-
+    private String location;
     public Ticket(){
         super();
     }
 
-    public Ticket(String ticketId, String ticketName, BigDecimal price){
-        this.ticketId = ticketId;
+    public Ticket(int Id, String ticketName, String location, BigDecimal price){
+        this.id = Id;
         this.ticketName = ticketName;
+        this.location = location;
         this.price = price;
     }
 
     //
     // GETTERY I SETTERY
     //
-
-    public String getTicketId() {
-        return ticketId;
+    public int getId() {
+        return id;
     }
 
-    public void setTicketId(String ticketId) {
-        this.ticketId = ticketId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTicketName() {
@@ -51,6 +51,14 @@ public class Ticket {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getTicketDesc() {
@@ -100,12 +108,12 @@ public class Ticket {
         if (getClass() != obj.getClass())
             return false;
         Ticket other = (Ticket) obj;
-        if (ticketId == null)
+        if (id == 0)
         {
-            if (other.ticketId != null)
+            if (other.id != 0)
                 return false;
         }
-        else if (!ticketId.equals(other.ticketId))
+        else if (id!=(other.id))
             return false;
         return true;
     }
@@ -115,7 +123,7 @@ public class Ticket {
     public int hashCode(){
         final int PRIME = 31;
         int result = 1;
-        result = PRIME * result + ((ticketId == null) ? 0 : ticketId.hashCode());
+        result = PRIME * result + ((id == 0) ? 0 : hashCode());
         return result;
     }
 
