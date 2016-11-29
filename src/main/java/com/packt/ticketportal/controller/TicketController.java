@@ -21,7 +21,7 @@ public class TicketController {
     @RequestMapping("/tickets")
     public String list(Model model){
 
-        model.addAttribute("tickets",ticketRepository.getAllTickets());
+        model.addAttribute("tickets",ticketRepository.getAll());
         return "tickets";
     }
 }

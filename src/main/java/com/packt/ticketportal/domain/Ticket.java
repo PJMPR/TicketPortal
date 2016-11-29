@@ -1,19 +1,13 @@
 package com.packt.ticketportal.domain;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * Created by Kuba on 2016-11-15.
  */
-@Entity
-@NamedQueries({
-        @NamedQuery(name= "ticketAvaible", query = "Select t from Ticket t where t.ticketsInStock > 0")
-})
 
-public class Ticket {
-    private Long ticketId;
+public class Ticket implements IHaveId {
+    private int id;
     private String ticketName;
     private BigDecimal price;
     private String ticketDesc;
@@ -25,8 +19,8 @@ public class Ticket {
         super();
     }
 
-    public Ticket(Long ticketId, String ticketName,String location, BigDecimal price){
-        this.ticketId = ticketId;
+    public Ticket(int Id, String ticketName, String location, BigDecimal price){
+        this.id = Id;
         this.ticketName = ticketName;
         this.location = location;
         this.price = price;
@@ -35,14 +29,12 @@ public class Ticket {
     //
     // GETTERY I SETTERY
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getTicketId() {
-        return ticketId;
+    public int getId() {
+        return id;
     }
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTicketName() {
@@ -116,12 +108,12 @@ public class Ticket {
         if (getClass() != obj.getClass())
             return false;
         Ticket other = (Ticket) obj;
-        if (ticketId == null)
+        if (id == 0)
         {
-            if (other.ticketId != null)
+            if (other.id != 0)
                 return false;
         }
-        else if (!ticketId.equals(other.ticketId))
+        else if (id!=(other.id))
             return false;
         return true;
     }
@@ -131,7 +123,7 @@ public class Ticket {
     public int hashCode(){
         final int PRIME = 31;
         int result = 1;
-        result = PRIME * result + ((ticketId == null) ? 0 : ticketId.hashCode());
+        result = PRIME * result + ((id == 0) ? 0 : hashCode());
         return result;
     }
 

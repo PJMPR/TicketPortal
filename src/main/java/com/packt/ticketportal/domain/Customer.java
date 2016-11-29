@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * Created by Kuba on 2016-11-15.
  */
-@Entity
-public class Customer {
-    private Long customerId;
+
+public class Customer implements IHaveId {
+    private int id;
     private String name;
     private String address;
     private long noOfOrdersMade;
@@ -21,8 +21,8 @@ public class Customer {
     public Customer(){
         super();
     }
-    public Customer(Long customerId, String name, String address){
-        this.customerId = customerId;
+    public Customer(int id, String name, String address){
+        this.id = id;
         this.name = name;
         this.address = address;
     }
@@ -30,14 +30,12 @@ public class Customer {
     //
     // GETTERY I SETTERY
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getCustomerId() {
-        return customerId;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -65,7 +63,6 @@ public class Customer {
         this.noOfOrdersMade = noOfOrdersMade;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getRegistrationDate() {
         return registrationDate;
     }
@@ -74,7 +71,6 @@ public class Customer {
         this.registrationDate = registrationDate;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Ticket> getTickets() {
         return tickets;
     }
@@ -85,7 +81,6 @@ public class Customer {
     //
     // KONIEC GETTEROW I SETTEROW
     //
-    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;
@@ -94,12 +89,12 @@ public class Customer {
         if (getClass() != obj.getClass())
             return false;
         Customer other = (Customer) obj;
-        if (customerId == null)
+        if (id == 0)
         {
-            if (other.customerId != null)
+            if (other.id != 0)
                 return false;
         }
-        else if (!customerId.equals(other.customerId))
+        else if (id!=(other.id))
             return false;
         return true;
     }
@@ -108,7 +103,7 @@ public class Customer {
     public int hashCode(){
         final int PRIME = 15;
         int result = 1;
-        result = PRIME * result + ((customerId == null) ? 0 : customerId.hashCode());
+        result = PRIME * result + ((id == 0) ? 0 : hashCode());
         return result;
     }
 }
