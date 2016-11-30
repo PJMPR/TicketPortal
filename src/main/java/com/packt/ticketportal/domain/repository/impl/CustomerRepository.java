@@ -1,7 +1,6 @@
 package com.packt.ticketportal.domain.repository.impl;
 
 import com.packt.ticketportal.domain.Customer;
-import com.packt.ticketportal.domain.Ticket;
 import com.packt.ticketportal.domain.mappers.IMapResultSetIntoEntity;
 import com.packt.ticketportal.domain.repository.RepositoryBase;
 
@@ -9,9 +8,12 @@ import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by Kuba on 2016-11-29.
  */
+@Repository
 public class CustomerRepository extends RepositoryBase<Customer> {
 
     public CustomerRepository(Connection connection, IMapResultSetIntoEntity<Customer> mapper){

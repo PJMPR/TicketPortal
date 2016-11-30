@@ -1,6 +1,5 @@
 package com.packt.ticketportal.domain;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 

@@ -7,9 +7,12 @@ import com.packt.ticketportal.domain.repository.RepositoryBase;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by Kuba on 2016-11-29.
  */
+@Repository
 public class HistoryLogRepository extends RepositoryBase<HistoryLog> {
 
     public HistoryLogRepository(Connection connection, IMapResultSetIntoEntity<HistoryLog> mapper) {

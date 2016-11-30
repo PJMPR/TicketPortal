@@ -7,10 +7,12 @@ import com.packt.ticketportal.domain.repository.RepositoryBase;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by Kuba on 2016-11-17.
  */
-
+@Repository
 public class TicketRepository extends RepositoryBase<Ticket> {
 
     public TicketRepository(Connection connection, IMapResultSetIntoEntity<Ticket> mapper){
