@@ -16,14 +16,15 @@ public class Ticket implements IHaveId {
     private long ticketsInOrder;
     private String location;
     public Ticket(){
-        super();
+    	super();
     }
 
-    public Ticket(int Id, String ticketName, String location, BigDecimal price){
+    public Ticket(int Id, String ticketName, String location, BigDecimal price, long ticketsInStock){
         this.id = Id;
         this.ticketName = ticketName;
         this.location = location;
         this.price = price;
+        this.ticketsInStock = ticketsInStock;
     }
 
     //

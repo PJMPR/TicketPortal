@@ -5,6 +5,7 @@ import com.packt.ticketportal.domain.Ticket;
 import com.packt.ticketportal.domain.mappers.IMapResultSetIntoEntity;
 import com.packt.ticketportal.domain.repository.RepositoryBase;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -47,7 +48,7 @@ public class CustomerRepository extends RepositoryBase<Customer> {
         insert.setString(2, entity.getAddress());
         insert.setInt(3,entity.getNoOfOrdersMade());
         insert.setString(4,entity.getRegistrationDate().toString());
-        insert.setArray(5,entity.getTickets());
+        insert.setArray(5,(Array) entity.getTickets());
 
 
 
@@ -59,8 +60,8 @@ public class CustomerRepository extends RepositoryBase<Customer> {
         update.setString(2, entity.getAddress());
         update.setInt(3,entity.getNoOfOrdersMade());
         update.setString(4,entity.getRegistrationDate().toString());
-        update.setArray(5,entity.getTickets());
-        update.setInt(3, entity.getId());
+        update.setArray(5,(Array) entity.getTickets());
+        update.setInt(6, entity.getId());
 
     }
 

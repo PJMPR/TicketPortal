@@ -17,7 +17,6 @@ public class CustomerMapper {
         t.setNoOfOrdersMade(rs.getInt("noOfOrders"));
         t.setRegistrationDate(rs.getDate("registrationDate"));
         t.setName(rs.getString("name"));
-        t.setTickets(rs.getArray("tickets"));
         return t;
     }
 }

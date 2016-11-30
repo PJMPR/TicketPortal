@@ -3,7 +3,6 @@ package com.packt.ticketportal.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.sql.Array;
 
 /**
  * Created by Kuba on 2016-11-15.
@@ -14,8 +13,8 @@ public class Customer implements IHaveId {
     private String name;
     private String address;
     private int noOfOrdersMade;
-    private Date registrationDate;
-    private Array tickets;
+    private Date registrationDate = new Date();
+    private ArrayList<Ticket> tickets;
 
 
     public Customer(){
@@ -71,11 +70,11 @@ public class Customer implements IHaveId {
         this.registrationDate = registrationDate;
     }
 
-    public Array getTickets() {
+    public ArrayList<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(Array tickets) {
+    public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
     }
     //
