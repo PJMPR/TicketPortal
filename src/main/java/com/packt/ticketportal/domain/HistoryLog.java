@@ -11,7 +11,7 @@ import java.util.Date;
 public class HistoryLog implements IHaveId {
     private int id;
     private Customer customer;
-    private Date date;
+    private Date dateOfOrder;
     private int amount;
     private Ticket forEvent;
 
@@ -32,11 +32,11 @@ public class HistoryLog implements IHaveId {
     }
 
     public Date getDate() {
-        return date;
+        return dateOfOrder;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.dateOfOrder = date;
     }
 
     public int getAmount() {

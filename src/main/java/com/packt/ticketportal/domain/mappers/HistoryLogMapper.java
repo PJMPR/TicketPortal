@@ -14,6 +14,7 @@ public class HistoryLogMapper {
         HistoryLog t = new HistoryLog();
         t.setId(rs.getInt("id"));
         t.setAmount(rs.getInt("amount"));
+        t.setDate(rs.getDate("date"));
         return t;
     }
 }
