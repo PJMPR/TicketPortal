@@ -43,7 +43,6 @@ public class App {
                 System.out.println(d.getId());
                 System.out.println(d.getTicketName());
             }
-            System.out.println("zapisuje janka");
             catalogue.saveAndClose();
         } catch (SQLException ex){
             ex.printStackTrace();
