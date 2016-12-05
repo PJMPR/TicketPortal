@@ -55,9 +55,8 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
 
             selectById.setInt(1, entityId);
             ResultSet rs = selectById.executeQuery();
-            while(rs.next()){
-                return mapper.map(rs);
-            }
+            return mapper.map(rs);
+
         }
         catch(SQLException ex){
             ex.printStackTrace();
