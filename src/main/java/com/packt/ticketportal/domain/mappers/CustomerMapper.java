@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Kuba on 2016-11-29.
  */
-public class CustomerMapper {
+public class CustomerMapper implements IMapResultSetIntoEntity<Customer> {
     public Customer map(ResultSet rs) throws SQLException {
         Customer t = new Customer();
         t.setId(rs.getInt("id"));
@@ -17,7 +17,6 @@ public class CustomerMapper {
         t.setNoOfOrdersMade(rs.getInt("noOfOrders"));
         t.setRegistrationDate(rs.getDate("registrationDate"));
         t.setName(rs.getString("name"));
-        t.setTickets(rs.getArray("tickets"));
         return t;
     }
 }

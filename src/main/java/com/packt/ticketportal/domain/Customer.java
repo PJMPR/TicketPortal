@@ -15,14 +15,12 @@ public class Customer implements IHaveId {
     private String address;
     private int noOfOrdersMade;
     private Date registrationDate;
-    private Array tickets;
 
 
     public Customer(){
         super();
     }
-    public Customer(int id, String name, String address){
-        this.id = id;
+    public Customer( String name, String address){
         this.name = name;
         this.address = address;
     }
@@ -71,13 +69,7 @@ public class Customer implements IHaveId {
         this.registrationDate = registrationDate;
     }
 
-    public Array getTickets() {
-        return tickets;
-    }
 
-    public void setTickets(Array tickets) {
-        this.tickets = tickets;
-    }
     //
     // KONIEC GETTEROW I SETTEROW
     //

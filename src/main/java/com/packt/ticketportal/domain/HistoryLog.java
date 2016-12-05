@@ -1,8 +1,5 @@
 package com.packt.ticketportal.domain;
 
-import com.packt.ticketportal.domain.Customer;
-import com.packt.ticketportal.domain.Ticket;
-
 import java.util.Date;
 
 /**
@@ -10,10 +7,10 @@ import java.util.Date;
  */
 public class HistoryLog implements IHaveId {
     private int id;
-    private Customer customer;
+    private int customerId;
     private Date date;
     private int amount;
-    private Ticket forEvent;
+    private int ticketForEventId;
 
     public int getId() {
         return id;
@@ -23,12 +20,12 @@ public class HistoryLog implements IHaveId {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public Date getDate() {
@@ -47,12 +44,12 @@ public class HistoryLog implements IHaveId {
         this.amount = amount;
     }
 
-    public Ticket getForEvent() {
-        return forEvent;
+    public int getTicketForEventId() {
+        return ticketForEventId;
     }
 
-    public void setForEvent(Ticket forEvent) {
-        this.forEvent = forEvent;
+    public void setTicketForEventId(int ticketForEventId) {
+        this.ticketForEventId = ticketForEventId;
     }
 }
 

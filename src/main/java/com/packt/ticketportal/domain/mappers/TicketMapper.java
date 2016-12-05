@@ -1,5 +1,6 @@
 package com.packt.ticketportal.domain.mappers;
 
+import com.packt.ticketportal.domain.Customer;
 import com.packt.ticketportal.domain.Ticket;
 
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ public class TicketMapper implements IMapResultSetIntoEntity<Ticket> {
         t.setTicketDesc(rs.getString("ticketDesc"));
         t.setLocation(rs.getString("location"));
         t.setTicketCat(rs.getString("category"));
+        t.setCustomerId(( rs.getInt("customer")));
         return t;
     }
 }

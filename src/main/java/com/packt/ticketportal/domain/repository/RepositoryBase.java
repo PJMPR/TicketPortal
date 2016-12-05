@@ -5,6 +5,9 @@ package com.packt.ticketportal.domain.repository;
  */
 import com.packt.ticketportal.domain.IHaveId;
 import com.packt.ticketportal.domain.mappers.IMapResultSetIntoEntity;
+import com.packt.ticketportal.domain.unitofwork.Entity;
+import com.packt.ticketportal.domain.unitofwork.IUnitOfWork;
+import com.packt.ticketportal.domain.unitofwork.IUnitOfWorkRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +17,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RepositoryBase<TEntity extends IHaveId> implements IRepository<TEntity> {
+public abstract class RepositoryBase<TEntity extends IHaveId> implements IRepository<TEntity>, IUnitOfWorkRepository {
     protected Connection connection;
-
+    protected IUnitOfWork uow;
     protected Statement createTable;
 
     protected PreparedStatement insert;
@@ -28,7 +31,9 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
     protected IMapResultSetIntoEntity<TEntity> mapper;
 
     protected RepositoryBase(Connection connection,
-                             IMapResultSetIntoEntity<TEntity> mapper) {
+                             IMapResultSetIntoEntity<TEntity> mapper,
+                             IUnitOfWork uow) {
+        this.uow = uow;
         this.connection = connection;
         this.mapper = mapper;
         try {
@@ -45,9 +50,6 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
             e.printStackTrace();
         }
     }
-    /* (non-Javadoc)
-     * @see dao.IRepository#get(int)
-     */
     public TEntity get(int entityId){
         try{
 
@@ -63,9 +65,6 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see dao.IRepository#getAll()
-     */
     public List<TEntity> getAll(){
         try{
             List<TEntity> result = new ArrayList<TEntity>();
@@ -81,23 +80,34 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see dao.IRepository#add(TEntity)
-     */
-    public void add(TEntity entity) {
+    public void add(TEntity entity){
+        uow.markAsNew(new Entity(entity), this);
+
+    }
+    public void delete(TEntity entity){
+        uow.markAsDeleted(new Entity(entity), this);
+
+    }
+    public void update(TEntity entity){
+        uow.markAsChanged(new Entity(entity), this);
+    }
+
+
+
+
+
+
+    public void persistAdd(Entity entity) {
         try{
-            setupInsert(entity);
+            setupInsert((TEntity)entity.getEntity());
             insert.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();
         }
     }
-    /* (non-Javadoc)
-	 * @see dao.IRepository#update(TEntity)
-	 */
-    public void update(TEntity entity){
+    public void persistUpdate(Entity entity){
         try{
-            setupUpdate(entity);
+            setupUpdate((TEntity)entity.getEntity());
             update.executeUpdate();
 
         }catch(SQLException ex){
@@ -106,12 +116,9 @@ public abstract class RepositoryBase<TEntity extends IHaveId> implements IReposi
 
     }
 
-    /* (non-Javadoc)
-     * @see dao.IRepository#delete(TEntity)
-     */
-    public void delete(TEntity entity){
+    public void persistDelete(Entity entity){
         try{
-            delete.setInt(1, entity.getId());
+            delete.setInt(1, ((TEntity)entity.getEntity()).getId());
             delete.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();

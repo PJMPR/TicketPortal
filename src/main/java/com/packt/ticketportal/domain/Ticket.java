@@ -13,14 +13,22 @@ public class Ticket implements IHaveId {
     private String ticketDesc;
     private String ticketCat;
     private long ticketsInStock;
-    private long ticketsInOrder;
     private String location;
+    private int customerId;
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
     public Ticket(){
         super();
     }
 
-    public Ticket(int Id, String ticketName, String location, BigDecimal price){
-        this.id = Id;
+    public Ticket( String ticketName, String location, BigDecimal price){
         this.ticketName = ticketName;
         this.location = location;
         this.price = price;
@@ -85,13 +93,6 @@ public class Ticket implements IHaveId {
         this.ticketsInStock = ticketsInStock;
     }
 
-    public long getTicketsInOrder() {
-        return ticketsInOrder;
-    }
-
-    public void setTicketsInOrder(long ticketsInOrder) {
-        this.ticketsInOrder = ticketsInOrder;
-    }
 
 
     //

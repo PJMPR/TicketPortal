@@ -1,6 +1,7 @@
 package com.packt.ticketportal.controller;
 
 import com.packt.ticketportal.domain.Ticket;
+import com.packt.ticketportal.domain.repository.ITicketRepository;
 import com.packt.ticketportal.domain.repository.impl.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
 @Controller
 public class TicketController {
     @Autowired
-    private TicketRepository ticketRepository;
+    private ITicketRepository ticketRepository;
 
     @RequestMapping("/tickets")
     public String list(Model model){
