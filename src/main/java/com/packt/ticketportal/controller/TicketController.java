@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Kuba on 2016-11-17.
  */
-///////////////////// NIE DZIALA TODO
+///////////////////// NIE DZIALA --- Dodac beany i DI
 @Controller
 public class TicketController {
     private IRepositoryCatalogue iRepository;

@@ -30,7 +30,6 @@ public class App {
             catalogue.customer().add(A);
             Ticket T = new Ticket("ASD","TRICITY",new BigDecimal(100));
             T.setTicketsInStock(1000);
-            T.setTicketCat("Mecz");
             T.setTicketDesc("Bilet na mecz");
             catalogue.ticket().add(T);
             HistoryLog H = new HistoryLog();
