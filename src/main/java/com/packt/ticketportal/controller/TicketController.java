@@ -1,28 +1,26 @@
 package com.packt.ticketportal.controller;
 
 import com.packt.ticketportal.domain.Ticket;
-import com.packt.ticketportal.domain.repository.ITicketRepository;
-import com.packt.ticketportal.domain.repository.impl.TicketRepository;
+import com.packt.ticketportal.domain.repository.IRepositoryCatalogue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by Kuba on 2016-11-17.
  */
-
+///////////////////// NIE DZIALA TODO
 @Controller
 public class TicketController {
-    @Autowired
-    private ITicketRepository ticketRepository;
+    private IRepositoryCatalogue iRepository;
 
     @RequestMapping("/tickets")
     public String list(Model model){
 
-        model.addAttribute("tickets",ticketRepository.getAll());
+        model.addAttribute("tickets",iRepository.ticket().getAll());
         return "tickets";
     }
 }

@@ -1,4 +1,5 @@
 import com.packt.ticketportal.domain.Customer;
+import com.packt.ticketportal.domain.HistoryLog;
 import com.packt.ticketportal.domain.Ticket;
 import com.packt.ticketportal.domain.repository.IRepositoryCatalogue;
 import com.packt.ticketportal.domain.repository.impl.RepositoryCatalogue;
@@ -8,13 +9,14 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Kuba on 2016-11-09.
  */
-public class Test {
+public class App {
 
     public static void main(String [] args)
     {
@@ -31,7 +33,17 @@ public class Test {
             T.setTicketCat("Mecz");
             T.setTicketDesc("Bilet na mecz");
             catalogue.ticket().add(T);
-
+            HistoryLog H = new HistoryLog();
+            H.setTicketForEventId(1);
+            H.setAmount(2);
+            H.setCustomerId(1);
+            H.setDate(new Date());
+            catalogue.historyLog().add(H);
+            List<Ticket> D = catalogue.ticket().getAll();
+            for(Ticket d: D){
+                System.out.println(d.getId());
+                System.out.println(d.getTicketName());
+            }
             System.out.println("zapisuje janka");
             catalogue.saveAndClose();
         } catch (SQLException ex){

@@ -16,11 +16,10 @@ public class TicketMapper implements IMapResultSetIntoEntity<Ticket> {
         t.setId(rs.getInt("id"));
         t.setTicketName(rs.getString("name"));
         t.setPrice(rs.getBigDecimal("price"));
-        t.setTicketsInStock(rs.getLong("inStock"));
+        t.setTicketsInStock(rs.getInt("inStock"));
         t.setTicketDesc(rs.getString("ticketDesc"));
         t.setLocation(rs.getString("location"));
         t.setTicketCat(rs.getString("category"));
-        t.setCustomerId(( rs.getInt("customer")));
         return t;
     }
 }

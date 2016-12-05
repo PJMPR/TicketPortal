@@ -1,9 +1,6 @@
 package com.packt.ticketportal.domain;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.sql.Array;
 
 /**
  * Created by Kuba on 2016-11-15.

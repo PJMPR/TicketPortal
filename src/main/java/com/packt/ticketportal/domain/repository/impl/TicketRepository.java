@@ -5,6 +5,7 @@ import com.packt.ticketportal.domain.mappers.IMapResultSetIntoEntity;
 import com.packt.ticketportal.domain.repository.ITicketRepository;
 import com.packt.ticketportal.domain.repository.RepositoryBase;
 import com.packt.ticketportal.domain.unitofwork.IUnitOfWork;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,7 +13,6 @@ import java.sql.SQLException;
 /**
  * Created by Kuba on 2016-11-17.
  */
-
 public class TicketRepository extends RepositoryBase<Ticket> implements ITicketRepository {
 
     public TicketRepository(Connection connection, IMapResultSetIntoEntity<Ticket> mapper, IUnitOfWork uow){

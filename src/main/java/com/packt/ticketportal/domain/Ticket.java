@@ -120,13 +120,7 @@ public class Ticket implements IHaveId {
     }
 
 
-    @Override
-    public int hashCode(){
-        final int PRIME = 31;
-        int result = 1;
-        result = PRIME * result + ((id == 0) ? 0 : hashCode());
-        return result;
-    }
+
 
 
 }
