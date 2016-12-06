@@ -11,7 +11,7 @@ import java.util.List;
 public class UnitOfWork implements IUnitOfWork {
     private List<Entity> entities = new ArrayList<>();
 
-    Connection connection;
+    private Connection connection;
 
     public UnitOfWork (Connection connection) throws SQLException{
         this.connection = connection;

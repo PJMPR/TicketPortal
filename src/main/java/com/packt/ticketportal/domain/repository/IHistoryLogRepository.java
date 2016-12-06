@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface IHistoryLogRepository extends IRepository<HistoryLog> {
 
-    public List<HistoryLog> byCustomer(Customer customer);
+     List<HistoryLog> byCustomer(Customer customer);
 }

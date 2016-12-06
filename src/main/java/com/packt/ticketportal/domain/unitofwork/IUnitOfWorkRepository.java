@@ -6,7 +6,7 @@ package com.packt.ticketportal.domain.unitofwork;
  */
 public interface IUnitOfWorkRepository {
 
-    public void persistDelete(Entity entity);
-    public void persistUpdate(Entity entity);
-    public void persistAdd(Entity entity);
+     void persistDelete(Entity entity);
+     void persistUpdate(Entity entity);
+     void persistAdd(Entity entity);
 }
