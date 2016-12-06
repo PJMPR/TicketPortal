@@ -8,16 +8,25 @@ import com.packt.ticketportal.domain.unitofwork.IUnitOfWork;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kuba on 2016-11-17.
  */
 public class TicketRepository extends RepositoryBase<Ticket> implements ITicketRepository {
 
+    PreparedStatement selectByCategory;
     public TicketRepository(Connection connection, IMapResultSetIntoEntity<Ticket> mapper, IUnitOfWork uow){
-
         super(connection,mapper,uow);
+        try{
+            selectByCategory = connection.prepareStatement(selectByCategorySQL());
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -67,5 +76,25 @@ public class TicketRepository extends RepositoryBase<Ticket> implements ITicketR
         update.setInt(7,entity.getCustomerId());
         update.setInt(8, entity.getId());
 
+    }
+
+    @Override
+    public List<Ticket> byCategory(String category) {
+        try{
+            List<Ticket> result = new ArrayList<>();
+            selectByCategory.setString(1, category);
+            ResultSet rs = selectByCategory.executeQuery();
+            while (rs.next()){
+                result.add(mapper.map(rs));
+            }
+            return result;
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public String selectByCategorySQL(){
+        return "Select * FROM " + tableName() + "where category =?";
     }
 }
