@@ -8,7 +8,10 @@ import com.packt.ticketportal.domain.repository.RepositoryBase;
 import com.packt.ticketportal.domain.unitofwork.IUnitOfWork;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +21,11 @@ public class CustomerRepository extends RepositoryBase<Customer> implements ICus
 
     public CustomerRepository(Connection connection, IMapResultSetIntoEntity<Customer> mapper, IUnitOfWork uow){
         super(connection,mapper, uow);
+        try{
+            selectByName = connection.prepareStatement(selectByNameSQL());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -65,9 +73,25 @@ public class CustomerRepository extends RepositoryBase<Customer> implements ICus
         update.setInt(5, entity.getId());
 
     }
+    private PreparedStatement selectByName;
 
     @Override
     public List<Customer> withName(String name) {
+        try {
+            List<Customer> result = new ArrayList<>();
+            selectByName.setString(1, name);
+            ResultSet rs = selectByName.executeQuery();
+            while (rs.next()) {
+                result.add(mapper.map(rs));
+            }
+            return result;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return null;
+    }
+
+    public String selectByNameSQL() {
+        return "Select * FROM " + tableName() + " where name =?";
     }
 }

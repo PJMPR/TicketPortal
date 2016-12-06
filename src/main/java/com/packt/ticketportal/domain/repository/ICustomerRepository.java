@@ -8,6 +8,6 @@ import java.util.List;
  * Created by Kuba on 2016-12-05.
  */
 public interface ICustomerRepository extends IRepository<Customer> {
-    public List<Customer> withName(String name);
+     List<Customer> withName(String name);
 
 }
