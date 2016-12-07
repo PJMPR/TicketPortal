@@ -24,7 +24,7 @@ public class App {
         try{
             Connection connection = DriverManager.getConnection(url);
             IRepositoryCatalogue catalogue = new RepositoryCatalogue(new UnitOfWork(connection), connection);
-            Customer A = new Customer("A", "Tricity");
+            Customer A = new Customer("Imie", "Tricity");
             A.setRegistrationDate(new Date());
             A.setNoOfOrdersMade(0);
             catalogue.customer().add(A);

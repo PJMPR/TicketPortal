@@ -95,6 +95,6 @@ public class TicketRepository extends RepositoryBase<Ticket> implements ITicketR
     }
 
     public String selectByCategorySQL(){
-        return "Select * FROM " + tableName() + "where category =?";
+        return "Select * FROM " + tableName() + " where category =?";
     }
 }
