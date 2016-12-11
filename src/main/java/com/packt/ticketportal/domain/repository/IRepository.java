@@ -8,13 +8,13 @@ import java.util.List;
  * Created by Kuba on 2016-11-29.
  */
  public interface IRepository<TEntity extends IHaveId> {
-    public TEntity get(int id);
+     TEntity get(int id);
 
-    public List<TEntity> getAll();
+     List<TEntity> getAll();
 
-    public void add(TEntity entity);
+     void add(TEntity entity);
 
-    public void update(TEntity entity);
+     void update(TEntity entity);
 
-    public void delete(TEntity entity);
+     void delete(TEntity entity);
 }

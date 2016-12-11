@@ -9,5 +9,5 @@ import java.sql.SQLException;
  * Created by Kuba on 2016-11-29.
  */
 public interface IMapResultSetIntoEntity<TEntity extends IHaveId> {
-    public TEntity map(ResultSet rs) throws SQLException;
+     TEntity map(ResultSet rs) throws SQLException;
 }

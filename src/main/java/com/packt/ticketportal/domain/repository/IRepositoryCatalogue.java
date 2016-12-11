@@ -5,9 +5,10 @@ package com.packt.ticketportal.domain.repository;
  */
 public interface IRepositoryCatalogue {
 
-    public ICustomerRepository customer();
-    public IHistoryLogRepository historyLog();
-    public ITicketRepository ticket();
+     ICustomerRepository customer();
+     IHistoryLogRepository historyLog();
+     ITicketRepository ticket();
 
-    public void saveAndClose();
+     void saveAndClose();
+      void save();
 }
