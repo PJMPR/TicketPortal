@@ -8,11 +8,12 @@ import java.util.Objects;
 public class Entity {
     private Object entity;
     private IUnitOfWorkRepository repository;
-    private EntityState state = EntityState.Unchanged;
+    private EntityState state;
 
     public Entity(Object entity){
         super();
         this.entity = entity;
+        this.state = EntityState.Unchanged;
     }
     public enum EntityState{
         New, Unchanged, Changed, Deleted, Unknown

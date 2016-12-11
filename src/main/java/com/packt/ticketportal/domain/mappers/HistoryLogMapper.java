@@ -16,7 +16,6 @@ public class HistoryLogMapper implements IMapResultSetIntoEntity<HistoryLog> {
         t.setAmount(rs.getInt("amount"));
         t.setCustomerId(rs.getInt("customer"));
         t.setTicketForEventId(rs.getInt("event"));
-        t.setDate(rs.getDate("dateOfTransaction"));
         return t;
     }
 }

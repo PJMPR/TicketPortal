@@ -15,6 +15,7 @@ public class UnitOfWork implements IUnitOfWork {
 
     public UnitOfWork (Connection connection) throws SQLException{
         this.connection = connection;
+        this.connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
         this.connection.setAutoCommit(false);
     }
 
