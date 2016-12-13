@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class TicketRepository extends RepositoryBase<Ticket> implements ITicketRepository {
 
-    PreparedStatement selectByCategory;
+    private PreparedStatement selectByCategory;
     public TicketRepository(Connection connection, IMapResultSetIntoEntity<Ticket> mapper, IUnitOfWork uow){
         super(connection,mapper,uow);
         try{
