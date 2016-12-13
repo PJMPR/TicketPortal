@@ -8,13 +8,19 @@ import com.packt.ticketportal.domain.repository.RepositoryBase;
 import com.packt.ticketportal.domain.unitofwork.IUnitOfWork;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by Kuba on 2016-11-29.
  */
 public class HistoryLogRepository extends RepositoryBase<HistoryLog> implements IHistoryLogRepository {
+    private PreparedStatement selectByCustomer;
+
 
     public HistoryLogRepository(Connection connection, IMapResultSetIntoEntity<HistoryLog> mapper, IUnitOfWork uow) {
         super(connection, mapper, uow);
@@ -72,6 +78,21 @@ public class HistoryLogRepository extends RepositoryBase<HistoryLog> implements 
 
     @Override
     public List<HistoryLog> byCustomer(Customer customer) {
+        try {
+            List<HistoryLog> result = new ArrayList<>();
+            selectByCustomer.setInt(1, customer.getId());
+            ResultSet rs = selectByCustomer.executeQuery();
+            while (rs.next()) {
+                result.add(mapper.map(rs));
+            }
+            return result;
+        }catch (SQLException ex ){
+            ex.printStackTrace();
+        }
         return null;
     }
+
+
+
+    private String selectByCustomer() {return "Select * FROM "+ tableName() + " WHERE customer = ?"; }
 }

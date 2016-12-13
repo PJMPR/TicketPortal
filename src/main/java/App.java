@@ -23,10 +23,6 @@ public class App {
     {
         String url = "jdbc:hsqldb:hsql://localhost/workdb";
 
-
-
-
-
         try{
             Connection connection = DriverManager.getConnection(url);
             IRepositoryCatalogue catalogue = new RepositoryCatalogue(new UnitOfWork(connection), connection);

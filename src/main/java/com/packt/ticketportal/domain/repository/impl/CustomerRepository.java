@@ -91,7 +91,7 @@ public class CustomerRepository extends RepositoryBase<Customer> implements ICus
         return null;
     }
 
-    public String selectByNameSQL() {
+    private String selectByNameSQL() {
         return "Select * FROM " + tableName() + " where name =?";
     }
 }
