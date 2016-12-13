@@ -26,32 +26,52 @@ public class App {
         try{
             Connection connection = DriverManager.getConnection(url);
             IRepositoryCatalogue catalogue = new RepositoryCatalogue(new UnitOfWork(connection), connection);
+
             Customer A = new Customer("Imie", "Tricity");
             A.setRegistrationDate(new Date());
             A.setNoOfOrdersMade(0);
             catalogue.customer().add(A);
+
             Customer B = new Customer("Seba","Gdynia");
             B.setRegistrationDate(new Date(2016,3,20));
             B.setNoOfOrdersMade(1);
             catalogue.customer().add(B);
+
             catalogue.save();
+
             Ticket T = new Ticket("ASD","TRICITY",new BigDecimal(100));
             T.setTicketsInStock(1000);
             T.setTicketDesc("Bilet na mecz");
-            T.setCustomerId(catalogue.customer().get(0).getId());
+            T.setCustomerId(catalogue.customer().get(1).getId());
             catalogue.ticket().add(T);
+            Ticket T3 = new Ticket ("Bilet na event", "Gdynia", new BigDecimal(500));
+
+            T3.setTicketCat("Koncert");
+            T3.setTicketsInStock(500);
+            T3.setId(1);
+            catalogue.ticket().update(T3);
+
             catalogue.save();
+
             HistoryLog H = new HistoryLog();
             H.setTicketForEventId(catalogue.ticket().get(0).getId());
             H.setAmount(2);
             H.setCustomerId(catalogue.customer().get(1).getId());
             H.setDate(new Date());
             catalogue.historyLog().add(H);
+
+
             List<Ticket> D = catalogue.ticket().getAll();
             for(Ticket d: D){
                 System.out.println(d.getId());
                 System.out.println(d.getTicketName());
             }
+
+            Ticket T2 = new Ticket("SoaD", "Gdansk" ,new BigDecimal(200));
+            T2.setTicketsInStock(500);
+            T2.setTicketDesc("opis");
+            catalogue.ticket().add(T2);
+
             catalogue.saveAndClose();
         } catch (SQLException ex){
             ex.printStackTrace();
